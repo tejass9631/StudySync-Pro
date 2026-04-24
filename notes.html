@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudySync Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+  display:flex;
+  color:white;
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at 20% 20%, #1e1b4b, transparent 40%),
+    radial-gradient(circle at 80% 0%, #0f172a, transparent 40%),
+    #020617;
+}
+
+@keyframes bg{
+  0%{background-position:0%}
+  50%{background-position:100%}
+  100%{background-position:0%}
+}
+
+.sidebar{
+  width:230px;
+  height:calc(100vh - 20px);
+
+  margin:20px 0 10px 20px;  /* 👈 left se shift */
+  padding:20px;
+
+  display:flex;
+  flex-direction:column;
+
+  background: linear-gradient(180deg, #1e1b4b, #0f172a);
+  border-radius:20px;
+
+  box-shadow:
+    0 0 30px rgba(168,85,247,0.2),
+    inset 0 0 20px rgba(255,255,255,0.03);
+}
+
+
+.menu h4{
+  margin:15px 0 8px;
+  font-size:14px;
+  opacity:0.6;
+}
+
+
+.unit span,
+.unit{
+  cursor: pointer;
+}
+
+.menu button{
+  display:flex;
+  align-items:center;   /* 👈 vertical center fix */
+  gap:10px;             /* 👈 icon + text spacing */
+
+  width:100%;
+  padding:12px;
+  margin-bottom:10px;
+
+  border:none;
+  border-radius:12px;
+
+  background:transparent;
+  color:white;
+
+  cursor:pointer;
+}
+
+
+.menu button i,
+.menu button span{
+  display:flex;
+  align-items:center;
+}
+
+
+.menu button.active{
+  background: linear-gradient(90deg,#6366f1,#a855f7);
+  box-shadow: 0 0 15px rgba(168,85,247,0.5);
+}
+
+
+.menu button:hover{
+  background: rgba(168,85,247,0.15);
+  transform: translateX(5px);
+}
+
+.main{
+  flex:1;
+  padding:30px;
+  overflow-y:auto;
+}
+
+.header h1{font-size:26px;}
+.header p{opacity:0.6;}
+
+.card{
+  margin-top:20px;
+  padding:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+.unit{
+  padding:12px;
+  margin:8px 0;
+  border-radius:10px;
+  background:rgba(255,255,255,0.05);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:0.25s;
+}
+
+.unit:hover{
+  transform:translateX(8px);
+  background:rgba(168,85,247,0.2);
+}
+
+.download{
+  text-decoration:none;
+  color:#c084fc;
+  font-size:14px;
+}
+
+
+.back-btn{
+  background:#0f1435;
+  border:1px solid rgba(255,255,255,0.08);
+  color:#c7c9ff;
+  padding:8px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:13px;
+  margin:15px;
+  transition:0.3s;
+}
+
+.back-btn:hover{
+  background:#8b5cf6;
+  color:#fff;
+  box-shadow:0 0 15px rgba(139,92,246,0.5);
+}
+
+
+.section{display:none;}
+.active{display:block;}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+  <button class="back-btn" onclick="window.location.href='index.html'">
+  ← Back
+</button>
+
+  <div class="menu">
+    <h4>Semester 1</h4>
+    <button onclick="show('math1')">📐 Maths</button>
+    <button onclick="show('physics1')">⚛ Physics</button>
+    <button onclick="show('pps1')">💻 PPS</button>
+    <button onclick="show('it1')">🖥 IT Workshop</button>
+    <button onclick="show('be1')">🔌 Basic Electronics</button>
+
+    <h4>Semester 2</h4>
+    <button onclick="show('math2')">📐 Maths</button>
+    <button onclick="show('chem2')">🧪 Chemistry</button>
+    <button onclick="show('eng2')">📖 English</button>
+    <button onclick="show('py2')">🐍 Python</button>
+    <button onclick="show('web2')">🌐 Web Design</button>
+  </div>
+</div>
+
+<div class="main">
+
+<div class="header">
+  <h1>Notes Hub</h1>
+  <p>“Choose a section to begin your workflow”</p>
+</div>
+
+<!-- ================= SEM 1 ================= -->
+
+<div id="math1" class="section active">
+  <div class="card">
+    <h2>📐 Mathematics</h2>
+    <div class="unit">Linear Algebra - I <a href="m1.pdf" class="download">⬇</a></div>
+    <div class="unit">Linear Algebra - II <a href="m2.pdf" class="download">⬇</a></div>
+    <div class="unit">Calculus for Single Variable <a href="m3.pdf" class="download">⬇</a></div>
+    <div class="unit">Multivariable Calculus (Differentiation) <a href="m4.pdf" class="download">⬇</a></div>
+    <div class="unit">Multivariable Calculus (Integration) <a href="m5.pdf" class="download">⬇</a></div>
+    <div class="unit">Vector Calculus <a href="m6.pdf" class="download">⬇</a></div>
+  </div>
+</div>
+
+<div id="physics1" class="section">
+  <div class="card">
+    <h2>⚛ Physics</h2>
+    <div class="unit">Wave Optics<a href="phy1.pdf" class="download">⬇</a></div>
+    <div class="unit">Laser and Fiber Optics <a href="phy2.pdf" class="download">⬇</a></div>
+    <div class="unit">Ouantum Mechanics<a href="phy3.pdf" class="download">⬇</a></div>
+    <div class="unit">Semiconductors<a href="phy4.pdf" class="download">⬇</a></div>
+    <div class="unit">Magnestism and Electromagnetic Induction<a href="phy5.pdf" class="download">⬇</a></div>
+    
+  </div>
+</div>
+
+<div id="pps1" class="section">
+  <div class="card">
+    <h2>💻 PPS</h2>
+    <div class="unit">Introduction to Programming <a href="c1.pdf" class="download">⬇</a></div>
+    <div class="unit">Operators, Conditional Branching & Loops  <a href="c2.pdf" class="download">⬇</a></div>
+    <div class="unit">User Defined Functions<a href="c3.pdf" class="download">⬇</a></div>
+    <div class="unit">Array & String <a href="c4.pdf" class="download">⬇</a></div>
+    <div class="unit">Basic Algorithm <a href="c5.pdf" class="download">⬇</a></div>
+    <div class="unit">Function and Recursion <a href="c6.pdf" class="download">⬇</a></div>
+    <div class="unit">Structure, Function and Pointers <a href="c7.pdf" class="download">⬇</a></div>
+  </div>
+</div>
+
+<div id="it1" class="section">
+  <div class="card">
+    <h2>🖥 IT Workshop</h2>
+    <div class="unit">Compute Hardware and Peripherals <a href="it1.pdf" class="download">⬇</a></div>
+    <div class="unit">Internet and Web Technologies <a href="it2.pdf" class="download">⬇</a></div>
+    <div class="unit">Microsoft Word <a href="it3.pdf" class="download">⬇</a></div>
+    <div class="unit">LaTeX <a href="it4.pdf" class="download">⬇</a></div>
+    <div class="unit">Microsoft Excel <a href="it5.pdf" class="download">⬇</a></div>
+    <div class="unit">Microsoft PowerPoint <a href="it6.pdf" class="download">⬇</a></div>
+  </div>
+</div>
+
+<div id="be1" class="section">
+  <div class="card">
+    <h2>🔌 Basic Electronics</h2>
+    <div class="unit">Semiconductor Devices <a href="be1.pdf" class="download">⬇</a></div>
+    <div class="unit">Bipolar Junction Transistor (BJT) <a href="be2.pdf" class="download">⬇</a></div>
+    <div class="unit">Field-Effect Transistor (FET) <a href="be3.pdf" class="download">⬇</a></div>
+    <div class="unit">Operational Amplifier (Op-Amps) <a href="be4.pdf" class="download">⬇</a></div>
+    <div class="unit">Fundamentals of Digital Electronics <a href="be5.pdf" class="download">⬇</a></div>
+  </div>
+</div>
+
+<!-- ================= SEM 2 ================= -->
+
+<div id="math2" class="section">
+  <div class="card">
+    <h2>📐 Mathematics</h2>
+    <div class="unit">Complex Analysis 1 <a href="ma1.pdf" class="download">⬇</a></div>    <div class="unit">Complex Analysis 2 <a href="ma2.pdf" class="download">⬇</a></div>
+    <div class="unit">Ordinary Differential Equation <a href="ma3.pdf" class="download">⬇</a></div>
+    <div class="unit">Laplace Transform <a href="ma4.pdf" class="download">⬇</a></div>
+    <div class="unit">Fourier Series <a href="ma5.pdf" class="download">⬇</a></div>
+    
+  </div>
+</div>
+
+<div id="chem2" class="section">
+  <div class="card">
+    <h2>🧪 Chemistry</h2>
+    <div class="unit">Atomic & Molecular Structure <a href="ch1.pdf" class="download">⬇</a></div>
+    <div class="unit">Spectroscopy <a href="ch2.pdf" class="download">⬇</a></div>
+    <div class="unit">Electrochemistry & Fuels Cells <a href="ch3.pdf" class="download">⬇</a></div>
+    <div class="unit">Chemical Equilibrium <a href="ch4.pdf" class="download">⬇</a></div>
+    <div class="unit">Water Chemistry <a href="ch5.pdf" class="download">⬇</a></div>
+    <div class="unit">Polymer & Plastic <a href="ch6.pdf" class="download">⬇</a></div>
+    <div class="unit">Organic Reaction & Drug Synthesis A Drug Molecule <a href="ch7.pdf" class="download">⬇</a></div>
+  </div>
+</div>
+
+<div id="eng2" class="section">
+  <div class="card">
+    <h2>📖 English</h2>
+    <div class="unit">Vocabulary Building <a href="en1.pdf" class="download">⬇</a></div>
+    <div class="unit">Basic Strategy Skills <a href="en2.pdf" class="download">⬇</a></div>
+    <div class="unit">Common Errors <a href="en3.pdf" class="download">⬇</a></div>
+    <div class="unit">Appropriate Writing <a href="en4.pdf" class="download">⬇</a></div>
+    <div class="unit">Formal Writing Practice <a href="en5.pdf" class="download">⬇</a></div>
+    <div class="unit">Comprehension <a href="en6.pdf" class="download">⬇</a></div>
+  </div>
+</div>
+
+<div id="py2" class="section">
+  <div class="card">
+    <h2>🐍 Python</h2>
+    <div class="unit">Input & Output <a href="py1.pdf" class="download">⬇</a></div>
+    <div class="unit">Control Flow <a href="py2.pdf" class="download">⬇</a></div>
+    <div class="unit">Functions & Loops <a href="py3.pdf" class="download">⬇</a></div>
+    <div class="unit">Strings <a href="py4.pdf" class="download">⬇</a></div>
+    <div class="unit">Lists <a href="py5.pdf" class="download">⬇</a></div>
+    <div class="unit">Dictionaries, Tuples and Sets <a href="py6.pdf" class="download">⬇</a></div>
+  </div>
+</div>
+
+<div id="web2" class="section">
+  <div class="card">
+    <h2>🌐 Web Design</h2>
+    <div class="unit">Fundamentals of Web Design <a href="wd1.pdf" class="download">⬇</a></div>
+    <div class="unit">HTML5 <a href="wd2.pdf" class="download">⬇</a></div>
+    <div class="unit">CSS <a href="wd3.pdf" class="download">⬇</a></div>
+    <div class="unit">JavaScript <a href="wd4.pdf" class="download">⬇</a></div>
+    <div class="unit">Advanced JavaScript <a href="wd5.pdf" class="download">⬇</a></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function show(id){
+  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+
+
+function goBack(){
+  window.location.href = "index.html"; 
+  // ya window.history.back(); (agar previous page pe jana hai)
+}
+
+</script>
+
+</body>
+</html>
