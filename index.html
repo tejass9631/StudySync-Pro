@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.css" rel="stylesheet">
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<title>StudySync Pro</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<style></style>
+<body>
+
+
+
+  
+<!-- ===== SIDEBAR ===== -->
+
+<div class="sidebar">
+
+  <h2 class="logo">StudySync-Pro</h2>
+
+  <ul class="menu" id="menu">
+
+    <li class="menu-item active" data-page="dashboard">
+      <i class="lucide lucide-layout-dashboard"></i>
+      <span>Command Center</span>
+    </li>
+
+  <li class="menu-item" onclick="openNotes()">
+      <i class="lucide lucide-book-open"></i>
+      <span>Resource Vault</span>
+    </li>
+
+<li class="menu-item" onclick="openAttendance()">
+  <i class="lucide lucide-check-square"></i>
+  <span>Presence Analytics</span>
+</li>
+
+<li class="menu-item" onclick="openIndex45()">
+  <i class="lucide lucide-check-square"></i>
+  <span>Astro Hub</span>
+</li>
+
+    
+  </ul>
+
+</div>
+
+
+
+
+
+<!-- ===== MAIN ===== -->
+
+<div class="main">
+
+  <!-- ===== TOPBAR ===== -->
+
+<div class="topbar">
+
+<h2 id="welcomeUser">Welcome, Tejas</h2>
+
+  <div class="top-right">
+  <!--  THEME TOGGLE (IMPORTANT STRUCTURE) -->
+
+    <div class="theme-toggle" id="themeBtn">
+  <div class="toggle-circle"></div>
+</div>
+
+    <!-- PROFILE (IMPORTANT STRUCTURE) -->
+
+    <div class="profile" id="profileBtn">
+
+      <img src="https://i.pravatar.cc/100">
+
+      <!--  MENU  -->
+
+      <div class="profile-menu" id="profileMenu">
+        <input type="text" id="nameInput" placeholder="Change Name">
+<button id="saveName">Save</button>
+      </div>
+
+    </div>
+
+  <button class="logout" onclick="logout()">Logout</button>
+
+  </div>
+
+</div>
+
+
+
+
+<!-- ===== STATS BAR ===== -->
+
+<div class="stats-bar">
+
+  <div class="stat-item">
+    <div class="stat-icon notes">📘</div>
+    <div class="stat-text">
+      <h3>Notes: <span id="noteCount">0</span></h3>
+      <p>30-Days</p>
+    </div>
+  </div>
+
+  
+
+  <div class="stat-item">
+    <div class="stat-icon tasks">✔</div>
+    <div class="stat-text">
+      <h3>Tasks: <span id="taskCount">0</span></h3>
+      <p>1-Day</p>
+    </div>
+  </div>
+
+  
+
+  <div class="stat-item">
+    <div class="stat-icon today">📅</div>
+    <div class="stat-text">
+      <h3>Task Execution: <span id="todayStat">0/0</span></h3>
+      
+    </div>
+  </div>
+
+
+
+  <div class="stat-item">
+    <div class="stat-icon streak">🔥</div>
+    <div class="stat-text">
+      <h3>Consistency Streak: <span id="streakCount">0</span></h3>
+      <p></p>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+ 
+<!-- ===== GRAPH + CALENDAR ===== -->
+
+<div class="row row-top">
+
+  <!-- LEFT -->
+
+  <div class="card big">
+    <h3>Weekly Performance Insights</h3>
+    <canvas id="chart"></canvas>
+  </div>
+
+  <!-- RIGHT -->
+
+  <div class="card">
+    <h3>Activity Timeline</h3>
+<div class="mini-calendar">
+  <div class="cal-header">
+    <button id="prevMonth">‹</button>
+    <span id="currentMonth"></span>
+    <button id="nextMonth">›</button>
+  </div>
+
+  <div class="cal-days">
+    <span>Su</span><span>Mo</span><span>Tu</span>
+    <span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+  </div>
+
+  <div class="cal-dates" id="calendarDates"></div>
+</div>
+
+
+  </div>
+
+</div> 
+
+
+
+
+<!-- ===== TASK + NOTES + TIMER ===== -->
+
+<div class="row row-bottom">
+
+
+<!-- ======Tasks-->
+
+<div class="card tasks-card">
+
+  <!-- HEADER -->
+
+  <div class="task-header">
+    <h3>Task Manager</h3>
+
+    <div class="task-actions">
+      <button class="filter-btn"></button>
+      <button class="dropdown-btn"></button>
+    </div>
+  </div>
+
+  <!-- INPUT -->
+
+  <div class="task-input-row">
+
+  <input id="taskInput" type="text" placeholder="Task">
+
+  <!--  (JS-ready) -->
+
+  <select id="taskPriority" class="priority-select">
+    <option value="High">High</option>
+    <option value="Medium" selected>Medium</option>
+    <option value="Low">Low</option>
+  </select>
+
+  <button id="addTaskBtn" class="add-btn">Add</button>
+
+</div>
+
+  <!-- TASK LIST -->
+
+  <div id="taskList">
+
+    
+  </div>
+
+</div>
+
+  <!-- NOTES -->
+
+  <div class="card notes-card" id="notesContainer">
+
+  <!-- HEADER -->
+
+  <div class="notes-header">
+    <h3>Resource Library</h3>
+    
+  </div>
+
+  <!-- SEARCH -->
+
+<div class="notes-search">
+  <input id="noteInput" placeholder="Search...">
+  <span class="search-icon">🔍</span>
+</div>
+
+<!-- RECENT -->
+
+<div id="recentList" style="margin-top:10px;"></div>
+
+<!-- LIST -->
+
+<div class="notes-list" id="notesList"></div>
+
+
+</div>
+
+<!-- FOCUS TIMER -->
+
+ <div class="card" id="focusContainer">
+
+  <div class="focus-header">
+    <h3>Deep Work Timer</h3>
+  </div>
+
+  <div class="timer-wrapper">
+
+    <!--  CIRCLE -->
+
+    <div class="timer-circle">
+
+      <svg width="200" height="200">
+        <circle cx="100" cy="100" r="90" class="bg"></circle>
+        <circle cx="100" cy="100" r="90" class="progress" id="progressCircle"></circle>
+      </svg>
+
+      <div class="timer-text" id="focusTime">00:00</div>
+    </div>
+
+    <!-- INPUT -->
+
+    <input type="number" id="customMinutes" placeholder="Enter minutes">
+
+    <!-- BUTTONS -->
+
+    <div class="timer-controls">
+      <button id="startFocus">Start</button>
+      <button id="pauseFocus">Pause</button>
+      <button id="resetFocus">Reset</button>
+    </div>
+
+  </div>
+
+</div>
+  
+
+  
+
+</div> 
+
+</div>
+
+</div> 
+
+
+
+
+<!--  SCRIPTS  -->
+  
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const chart = new Chart(document.getElementById("chart"),{
+  type:"line",
+  data:{
+    labels: [],
+    datasets:[{
+      data: [],
+      borderColor:"#a855f7",
+      backgroundColor:"rgba(168,85,247,0.2)",
+      tension:0.4,
+      fill:true
+    }]
+  },
+  options:{
+    plugins:{legend:{display:false}}
+  }
+});
+</script>
+
+<script>
+function openNotes(){
+  window.location.href = "notes.html";
+}
+
+function openAttendance(){
+  window.location.href = "attendance.html";
+}
+</script>
+
+
+
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
