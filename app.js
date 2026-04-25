@@ -1280,3 +1280,12 @@ document.addEventListener("click", async (e) => {
   await increaseNoteDownload(file);
 
 });
+
+
+
+
+//Solar Explore
+
+document.querySelectorAll(".menu-item")[3].addEventListener("click", () => {
+  window.location.href = "index45.html";
+});
